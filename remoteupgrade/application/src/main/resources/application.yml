@@ -1,0 +1,31 @@
+server:
+  port: 8080
+
+
+upgrade-server:
+  serviceId: upgradeServer
+  Handler: com.protocol.RemoteUpgradeHandler
+  port: [10380]
+  idle: 300
+  decodecharset: ISO-8859-1
+  encodecharset: ISO-8859-1
+  pushUrl: http://127.0.0.1
+  pushflag: false
+  debugflag: false
+  toServiceId: upgradeServer
+
+debug-service:
+  port: [10381]
+
+system-args-init:
+  firmwareBasePath: C:\firmwares
+
+
+
+
+
+
+
+
+
+
