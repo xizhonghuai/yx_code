@@ -8,6 +8,7 @@ import java.io.UnsupportedEncodingException;
 import java.lang.annotation.Annotation;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
+import java.nio.ByteBuffer;
 
 public class Methods {
 
@@ -132,5 +133,19 @@ public class Methods {
         byte[] array = msg.getBytes("GBK");
         return new String(array, "ISO-8859-1");
     }
+
+
+    public static String hexStr2Byte(String hex) throws UnsupportedEncodingException {
+        ByteBuffer bf = ByteBuffer.allocate(hex.length() / 2);
+        for (int i = 0; i < hex.length(); i++) {
+            String hexStr = hex.charAt(i) + "";
+            i++;
+            hexStr += hex.charAt(i);
+            byte b = (byte) Integer.parseInt(hexStr, 16);
+            bf.put(b);
+        }
+        return new String(bf.array(),"ISO-8859-1");
+    }
+
 
 }
