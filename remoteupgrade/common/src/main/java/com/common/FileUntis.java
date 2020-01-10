@@ -1,5 +1,7 @@
 package com.common;
 
+import com.mina.Methods;
+
 import java.io.*;
 import java.util.ArrayList;
 import java.util.LinkedList;
@@ -21,7 +23,11 @@ public class FileUntis {
             BufferedReader in = new BufferedReader(new FileReader(filePath));
             String str;
             while ((str = in.readLine()) != null) {
-                list.add(str);
+
+                if (str.length()>1){
+                    str = str.substring(1);
+                    list.add(Methods.hexStr2Byte(str));
+                }
             }
         } catch (IOException e) {
            e.printStackTrace();

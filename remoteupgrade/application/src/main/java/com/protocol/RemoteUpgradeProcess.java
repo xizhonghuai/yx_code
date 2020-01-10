@@ -42,8 +42,8 @@ public class RemoteUpgradeProcess {
                 session.setAttribute("firmwareCache", firmware);
                 session.setAttribute("firmwareSize", firmware.size());
                 String curLine = firmware.remove(0);
-                session.write(curLine);
                 session.setAttribute("curLine",curLine);
+                session.write(curLine);
             } else {
                 session.write("firmware is null");
                 logger.info("firmware is null");
@@ -54,8 +54,8 @@ public class RemoteUpgradeProcess {
             LinkedList<String> firmware = (LinkedList<String>) session.getAttribute("firmwareCache", null);
             if (firmware != null && firmware.size() > 0) {
                 String curLine = firmware.remove(0);
-                session.write(curLine);
                 session.setAttribute("curLine",curLine);
+                session.write(curLine);
                 WsHandler.sendMessage(session.getRemoteAddress()+"_"+(100-firmware.size()*100/((int)session.getAttribute("firmwareSize"))));
             } else {
                 session.write("firmware send done");
@@ -63,12 +63,18 @@ public class RemoteUpgradeProcess {
             }
         }
 
-        if (id == 0x77){
+
+        if (id == 0x66){
             String curLine = (String) session.getAttribute("curLine", null);
             if (curLine != null && curLine.length() > 0) {
                 session.write(curLine);
             }
         }
+
+
+
+
+
 
 
     }
